@@ -1,0 +1,42 @@
+# General
+.DS_Store
+__pycache__/
+
+# Data files (example file formats)
+*.csv
+*.xls
+*.xlsx
+*.json
+*.sqlite
+*.db
+
+# Model files
+*.pkl
+*.h5
+
+# Environment and dependencies
+venv/
+.env
+
+# Jupyter Notebook checkpoints and outputs
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# Logs and output files
+*.log
+*.out
+*.results
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore personal configuration files
+config.yml
+secrets.yml
