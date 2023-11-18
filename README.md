@@ -49,3 +49,10 @@ jupyter lab
 ```
 
 Open `analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+
+## Reference
+
+1.  Data Society. 2016. Requests: Game of Thrones. <https://data.world/data-society/game-of-thrones>
+2.  Joel Östblom. 2023. DSCI531 Course Notes. <https://pages.github.ubc.ca/MDS-2023-24/DSCI_531_viz-1_students/lectures/4-eda.html>
+3.  Varada Kolhatkar. 2023. DSCI571 Course Notes . <https://pages.github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students/lectures/00_motivation-course-information.html>
+4.  Joel Östblom. 2023. DSCI573 Course Notes. <https://pages.github.ubc.ca/MDS-2023-24/DSCI_573_feat-model-select_students/README.html>
