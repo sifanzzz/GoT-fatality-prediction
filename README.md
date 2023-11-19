@@ -8,9 +8,9 @@ Milestone1 project for DSCI 522 (Data Science workflows); a course in the Master
 
 ## Overview
 
-This project aims to predict the mortality of characters in "Game of Thrones" using machine learning models. The model is designed to analyze data related to characters in the television series "Game of Thrones" and predict whether a character is likely to survive or die in the storyline.
+This project aims to predict the mortality of characters in "Game of Thrones" using machine learning models. The model is designed to analyze data related to characters in the book series "Game of Thrones" and predict whether a character is likely to survive or die in the story line.
 
-Fatality prediction in this context is a binary classification task, where the outcome is categorized as either `isAlive=0` (indicating dead) or `isAlive=1` (indicating survive). By training on the data, we aim to create a model capable of providing insights into the fate of characters based on various features.
+Fatality prediction in this context is a binary classification task, where the outcome is categorized as either `isDead=0` (indicating survive) or `isDead=1` (indicating dead). By training on the data, we aim to create a model capable of providing insights into the fate of characters based on various features.
 
 ## Model Comparison
 
@@ -22,8 +22,8 @@ The optimized LR model was then evaluated on a test set of 390 instances, result
 
 -   **Accuracy:** 0.63
 -   **Precision, Recall, and F1-score for Each Class:**
-    -   Dead (Class 0): Precision 0.85, Recall 0.62, F1-score 0.72 (Support: 294)
-    -   Survive (Class 1): Precision 0.38, Recall 0.68, F1-score 0.47 (Support: 96)
+    -   Dead (Class 1): Precision 0.85, Recall 0.62, F1-score 0.72 (Support: 294)
+    -   Survive (Class 0): Precision 0.38, Recall 0.68, F1-score 0.47 (Support: 96)
 -   **Macro Average:** Precision 0.61, Recall 0.65, F1-score 0.59
 -   **Weighted Average:** Precision 0.73, Recall 0.63, F1-score 0.66
 
