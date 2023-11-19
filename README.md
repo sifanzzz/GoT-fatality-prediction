@@ -14,18 +14,18 @@ Fatality prediction in this context is a binary classification task, where the o
 
 ## Model Comparison
 
-Our initial model comparison involved three classifiers: DummyClassifier, Logistic Regression (LR), and Support Vector Classifier (SVC). From the evaluation metrics, LR emerged as the top-performing model, particularly with an F1 score of 0.427. Therefore, we proceeded hyperparameter optimization for LR to enhance its predictive capabilities.
+Our initial model comparison involved three classifiers: DummyClassifier, Logistic Regression (LR), and Support Vector Classifier (SVC). From the evaluation metrics, LR emerged as the top-performing model. Therefore, we proceeded hyperparameter optimization for LR to enhance its predictive capabilities.
 
 ## Test Set Evaluation
 
 The optimized LR model was then evaluated on a test set of 390 instances, resulting in the following key metrics:
 
--   **Accuracy:** 0.65
+-   **Accuracy:** 0.63
 -   **Precision, Recall, and F1-score for Each Class:**
-    -   Dead (Class 0): Precision 0.85, Recall 0.65, F1-score 0.74 (Support: 294)
-    -   Survive (Class 1): Precision 0.38, Recall 0.65, F1-score 0.48 (Support: 96)
--   **Macro Average:** Precision 0.61, Recall 0.65, F1-score 0.61
--   **Weighted Average:** Precision 0.73, Recall 0.65, F1-score 0.67
+    -   Dead (Class 0): Precision 0.85, Recall 0.62, F1-score 0.72 (Support: 294)
+    -   Survive (Class 1): Precision 0.38, Recall 0.68, F1-score 0.47 (Support: 96)
+-   **Macro Average:** Precision 0.61, Recall 0.65, F1-score 0.59
+-   **Weighted Average:** Precision 0.73, Recall 0.63, F1-score 0.66
 
 These metrics provide a comprehensive understanding of the model's performance in predicting character survival or fatality.
 
@@ -38,7 +38,7 @@ While LR exhibited promising results, further refinement and exploration of addi
 First time running the project, run the following from the root of this repository:
 
 ``` bash
-conda env create --file environment.yml
+conda env create --file 522env.yaml
 ```
 
 To run the analysis, run the following from the root of this repository:
