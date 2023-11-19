@@ -20,12 +20,12 @@ Our initial model comparison involved three classifiers: DummyClassifier, Logist
 
 The optimized LR model was then evaluated on a test set of 390 instances, resulting in the following key metrics:
 
--   **Accuracy:** 0.71
+-   **Accuracy:** 0.65
 -   **Precision, Recall, and F1-score for Each Class:**
-    -   Dead (Class 0): Precision 0.85, Recall 0.75, F1-score 0.80 (Support: 294)
-    -   Survive (Class 1): Precision 0.44, Recall 0.59, F1-score 0.50 (Support: 96)
--   **Macro Average:** Precision 0.64, Recall 0.67, F1-score 0.65
--   **Weighted Average:** Precision 0.75, Recall 0.71, F1-score 0.73
+    -   Dead (Class 0): Precision 0.85, Recall 0.65, F1-score 0.74 (Support: 294)
+    -   Survive (Class 1): Precision 0.38, Recall 0.65, F1-score 0.48 (Support: 96)
+-   **Macro Average:** Precision 0.61, Recall 0.65, F1-score 0.61
+-   **Weighted Average:** Precision 0.73, Recall 0.65, F1-score 0.67
 
 These metrics provide a comprehensive understanding of the model's performance in predicting character survival or fatality.
 
