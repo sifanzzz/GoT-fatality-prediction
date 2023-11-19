@@ -16,7 +16,7 @@ We welcome contributions in various forms, including but not limited to: code en
 
 **Open a Pull Request:** Explain your changes or issues in the pull request description.
 
-**Please be adviced:**
+**Please be noted:**
 
 -   We aim to review pull requests within 7 days.
 -   New code should follow the tidyverse [style guide](http://style.tidyverse.org) or PEP8 [style guide](https://www.python.org/dev/peps/pep-0008/).

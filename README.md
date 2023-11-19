@@ -48,7 +48,7 @@ conda activate GoT-fatality-prediction
 jupyter lab 
 ```
 
-Open `analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+Open `analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells".
 
 ## Reference
 

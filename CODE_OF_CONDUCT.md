@@ -23,7 +23,7 @@ To develop an open and welcoming environment, we as contributors and maintainers
 -   The use of sexualized, discriminatory or offensive language or imagery and unwelcome sexual attention
 -   Trolling, insulting/derogatory comments, and personal or political attacks
 -   Public or private harassment
--   Publishing others' private information, such as a physical or electronic address, without explicit permission
+-   Publishing others' private information, such as a physical or electronic address, without explicit permissions
 -   Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ## Consequences
