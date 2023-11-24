@@ -1,6 +1,6 @@
 services:
   got_fatality_predictior:
-    image: test-team6-1
+    image: thomasjian/test-team6:v1
     ports: 
       - "8890:8888"
     volumes:
@@ -13,7 +13,7 @@ services:
     command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
 
 # Additional Notes:
-# - Thomas's Configuration
+# - This is test Configuration, need to replace image name
 # - The port 8890 on the host is mapped to port 8888 inside the container, where the Jupyter Notebook server is likely running.
 # - The Jupyter Notebook server is configured to run without a token for ease of access.
 
