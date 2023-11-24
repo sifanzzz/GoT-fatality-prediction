@@ -1,12 +1,13 @@
 import pandas as pd
 import pytest
-test_data
+from short_results import short_results
 
 
-test_model = random_search
+
+test_model = #some RandomizedSearchCV output
 
 def test_short_results_returns_dataframe():
-    df = short_results(test_model)
+    banana = short_results(test_model)
     assert isinstance(df, pd.DataFrame)
 
 pytest tests/
