@@ -1,6 +1,7 @@
 import pandas as pd
+from sklearn.model_selection import RandomizedSearchCV
 
-def short_results(cv_results):
+def short_results(model):
     """
     Summarize the cross validation attribute of a RandomizedSearchCV model containing a logistic regressor.
 
@@ -11,7 +12,7 @@ def short_results(cv_results):
     Parameters:
     ----------
     
-    model : <class 'sklearn.model_selection._search.RandomizedSearchCV'>
+    model : RandomSearchCV
         The model resulting from a RandomizedSearchCV call. 
 
     Returns:
@@ -40,8 +41,11 @@ def short_results(cv_results):
 
     """
 
-    assert(type(cv_results) == dict)
-    results = pd.DataFrame(cv_results)
+    # Assuming 'input' is the variable you want to check
+    if not isinstance(model, RandomizedSearchCV):
+        raise TypeError("Input is not an instance of sklearn's RandomizedSearchCV.")
+
+    results = pd.DataFrame(model.cv_results_)
     sorted_results = results.sort_values(by="mean_test_score", ascending=False).reset_index(drop=True)
     return sorted_results.loc[:4,["param_logisticregression__C",
                         "param_logisticregression__max_iter",
