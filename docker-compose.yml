@@ -1,6 +1,6 @@
 services:
   got_fatality_predictior:
-    image: thomasjian/dsci522-got-fatality-prediction
+    image: thomasjian/dsci522-got-fatality-prediction:7d1f892
     ports: 
       - "8890:8888"
     volumes:
