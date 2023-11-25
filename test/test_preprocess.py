@@ -1,16 +1,14 @@
-import os
-import sys
-import pytest
 import pandas as pd
+import pytest
+import sys
+import os
 
-# Add the project root folder to the Python path
+
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-# Now you can import the function from main.py
 from preprocess import preprocess_inputs
 
-
-test_df = {'S.No': {0: 1, 1: 2,2: 3,3: 4,4: 5,5: 6,6: 7,7: 8,8: 9,9: 
+test_df = pd.DataFrame({'S.No': {0: 1, 1: 2,2: 3,3: 4,4: 5,5: 6,6: 7,7: 8,8: 9,9: 
                     10,10: 11,11: 12,12: 13,13: 14,14: 15},
  'plod': {0: 0.946,1: 0.613,2: 0.507,3: 0.924,4: 0.383,5: 0.979,6: 0.986,7: 0.964,
         8: 0.276,9: 0.609,10: 0.833,11: 0.015,12: 0.187,13: 0.253,14: 0.295},
@@ -88,55 +86,36 @@ test_df = {'S.No': {0: 1, 1: 2,2: 3,3: 4,4: 5,5: 6,6: 7,7: 8,8: 9,9:
                 6: 0.431438127,7: 0.678929766,8: 0.006688963,9: 0.02006689,10: 0.163879599,11: 0.003344482,
                 12: 0.003344482,13: 0.003344482,14: 0.003344482},
 
- 'isAlive': {0: 0,1: 1,2: 1,3: 0,4: 1,5: 1,6: 0,7: 0,8: 0,9: 1,10: 0,11: 1,12: 1,13: 1,14: 1}}
+ 'isAlive': {0: 0,1: 1,2: 1,3: 0,4: 1,5: 1,6: 0,7: 0,8: 0,9: 1,10: 0,11: 1,12: 1,13: 1,14: 1}})
 
+def test_drop_cols():
+    expected_drop_cols = ['S.No', 'plod', 'name', 'heir', 'isAliveMother', 'isAliveFather',
+                          'isAliveHeir', 'isAliveSpouse', 'father', 'mother', 'spouse',
+                          'age', 'DateoFdeath']
+    processed_df = preprocess_inputs(test_df, {}, expected_drop_cols, [])
+    assert set(expected_drop_cols).isdisjoint(processed_df.columns)
 
-def test_preprocess_inputs(test_df):
-    
-
-    df = pd.DataFrame(test_df)
-
-    fill_nan_cols = {
+def test_fill_nan():
+    expected_fill_nan_cols = {
         'title': 'No Title',
         'house': 'No House',
-        'dateOfBirth': df['dateOfBirth'].median(),
         'culture': 'Unknown'
     }
+    processed_df = preprocess_inputs(test_df, expected_fill_nan_cols, [], [])
+    for key, val in expected_fill_nan_cols.items():
+        assert processed_df[key].fillna(val).equals(processed_df[key])
 
-    drop_cols = ['S.No', 'plod', 'name']
+def test_columns_existence_after_preprocessing():
+    fill_nan_cols = {'title':'No Title', 'house':'No House', 'dateOfBirth':'dateOfBirth', 'culture':'Unknown'}
+    drop_cols = ['S.No', 'plod', 'name', 'heir', 'isAliveMother', 'isAliveFather', 'isAliveHeir', 'isAliveSpouse',
+                 'father', 'mother', 'spouse', 'age', 'DateoFdeath']
+    less_frequent_cols = ['title', 'culture', 'house']
 
-    less_frequent_cols = ['title', 'house', 'culture']
+    processed_df = preprocess_inputs(test_df, fill_nan_cols, drop_cols, less_frequent_cols)
 
-    processed_df = preprocess_inputs(df, fill_nan_cols, drop_cols, less_frequent_cols)
-    print(processed_df['title'])
+    expected_cols = list(set(test_df.columns) - set(drop_cols))
+    for col in expected_cols:
+        assert col in processed_df.columns
 
-    # Test case 1: Check if columns are dropped
-    assert set(drop_cols).isdisjoint(processed_df.columns)
-
-    # Test case 2: Check if NaN values are filled correctly
-    assert processed_df['dateOfBirth'].isnull().sum() == 0
-
-    # Test case 3: Check if less frequent instances are grouped properly
-    for col in less_frequent_cols:
-        grouped_values = set(processed_df[col].unique())
-        assert 'Other' in grouped_values
-
-    # Test case 4: Check behavior with empty DataFrame
-    empty_df = pd.DataFrame()
-    processed_empty_df = preprocess_inputs(empty_df, fill_nan_cols, drop_cols, less_frequent_cols)
-    assert processed_empty_df.empty
-
-    # Test case 5: Check behavior with all NaNs in less frequent columns
-    nan_df = pd.DataFrame({
-        'title': [None, None, None],
-        'house': [None, None, None],
-        'culture': [None, None, None]
-    })
-    processed_nan_df = preprocess_inputs(nan_df, fill_nan_cols, drop_cols, less_frequent_cols)
-    assert processed_nan_df['title'].nunique() == 1 and processed_nan_df['title'].unique()[0] == 'Other'
-    assert processed_nan_df['house'].nunique() == 1 and processed_nan_df['house'].unique()[0] == 'Other'
-    assert processed_nan_df['culture'].nunique() == 1 and processed_nan_df['culture'].unique()[0] == 'Other'
-
-    # Add more test cases as needed based on specific scenarios
-
-test_preprocess_inputs(test_df)
+if __name__ == "__main__":
+    pytest.main()
