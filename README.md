@@ -35,7 +35,24 @@ While LR exhibited promising results, further refinement and exploration of addi
 
 ## Usage
 
-First time running the project, run the following from the root of this repository:
+To run the project via docker, run the following from the root of this repository:
+
+```bash
+docker compose up
+```
+Open your browser and type the following into the address bar:
+
+```bash
+localhost:8890
+```
+
+At the end of your session, hit **cntrl+C** at the command line and then run the following:
+
+```bash
+docker compose rm 
+```
+
+If you don't want to use docker, then the first time running the project, run the following from the root of this repository:
 
 ``` bash
 conda env create --file 522env.yaml
