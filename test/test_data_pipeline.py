@@ -78,3 +78,7 @@ def test_passthrough_features(setup_data):
     assert np.array_equal(
         transformed["passthrough__popularity"], setup_data["popularity"]
     )
+
+
+if __name__ == "__main__":
+    pytest.main()
