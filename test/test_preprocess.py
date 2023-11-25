@@ -6,7 +6,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from preprocess import preprocess_inputs
+from src.preprocess import preprocess_inputs
 
 test_df = pd.DataFrame({'S.No': {0: 1, 1: 2,2: 3,3: 4,4: 5,5: 6,6: 7,7: 8,8: 9,9: 
                     10,10: 11,11: 12,12: 13,13: 14,14: 15},
