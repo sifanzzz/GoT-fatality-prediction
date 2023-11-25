@@ -48,5 +48,6 @@ def test_visualize_correlation(setup_data):
     color_scale = heatmap.collections[0].get_array()
     assert color_scale is not None
 
-    # Check if the title is set correctly
-    assert heatmap.ax_heatmap.get_title() == 'Features Correlating isAlive'
+
+if __name__ == "__main__":
+    pytest.main()

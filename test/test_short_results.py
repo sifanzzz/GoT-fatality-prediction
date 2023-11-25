@@ -11,7 +11,7 @@ import pickle
 @pytest.fixture
 def setup_data():
       # Assuming the structure of the DataFrame based on the image you provided
-       with open("./tests/model.pkl", "rb") as f:
+       with open("./test/model.pkl", "rb") as f:
               model = pickle.load(f)
        return model
 
@@ -26,3 +26,6 @@ def test_short_results_returns_dataframe(setup_data):
 def test_short_results_correct_size(setup_data):
     banana = short_results(setup_data)
     assert banana.shape == (5,6)
+
+if __name__ == "__main__":
+    pytest.main()

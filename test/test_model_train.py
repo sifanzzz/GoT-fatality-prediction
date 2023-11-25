@@ -51,3 +51,6 @@ def test_create_model_returns_fitted_objects(sample_data, sample_pipeline):
 def test_create_model_type_error_with_invalid_data(sample_pipeline):
     with pytest.raises(TypeError):
         create_model("invalid data type", np.array([0, 1, 0]), sample_pipeline)
+
+if __name__ == "__main__":
+    pytest.main()

@@ -65,6 +65,14 @@ conda activate GoT-fatality-prediction
 jupyter lab 
 ```
 
+
+
+To run the tests, run the following from the root of this repository:
+
+``` bash
+pytest test/
+```
+
 Open `got_fatality_predictor.ipynb` in Jupyter Lab and under the "Kernel" menu click "Restart Kernel and Run All Cells".
 
 
