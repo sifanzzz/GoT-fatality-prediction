@@ -1,6 +1,6 @@
 import pandas as pd
 
-def short_results(model):
+def short_results(cv_results):
     """
     Summarize the cross validation attribute of a RandomizedSearchCV model containing a logistic regressor.
 
@@ -40,7 +40,8 @@ def short_results(model):
 
     """
 
-    results = pd.DataFrame(model.cv_results_)
+    assert(type(cv_results) == dict)
+    results = pd.DataFrame(cv_results)
     sorted_results = results.sort_values(by="mean_test_score", ascending=False).reset_index(drop=True)
     return sorted_results.loc[:4,["param_logisticregression__C",
                         "param_logisticregression__max_iter",
