@@ -51,7 +51,10 @@ def preprocess_inputs(df,fill_nan_cols,drop_cols,less_frequent_cols):
   # Fill NaN values
 
   for key,val in fill_nan_cols.items():
-      df[key] = df[key].fillna(val)
+      if key == 'dateOfBirth':
+          df[key] = df[key].fillna(df[key].median())
+      else:
+          df[key] = df[key].fillna(val)
 
 # Group less frequent instances
 

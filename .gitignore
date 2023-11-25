@@ -3,7 +3,6 @@
 __pycache__/
 
 # Data files (example file formats)
-*.csv
 *.xls
 *.xlsx
 *.json
