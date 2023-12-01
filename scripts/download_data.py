@@ -20,8 +20,8 @@ def data_download(url,write_to):
     - None
 
     Example:
-    >>> data_download('https://raw.githubusercontent.com/TheMLGuy/Game-of-Thrones-Dataset/master/character-predictions.csv', 'data/raw') 
-    This would download the dataset from the given URL and save it in the 'data/raw' directory.
+    >>> data_download('https://raw.githubusercontent.com/TheMLGuy/Game-of-Thrones-Dataset/master/character-predictions.csv', 'data/') 
+    This would download the dataset from the given URL and save it in the 'data/' directory.
     """
 
     df = pd.read_csv(url)
