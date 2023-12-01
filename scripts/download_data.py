@@ -20,7 +20,7 @@ def data_download(url,write_to):
     - None
 
     Example:
-    >>> data_download('http://example.com/dataset.csv', 'data/raw') 
+    >>> data_download('https://raw.githubusercontent.com/TheMLGuy/Game-of-Thrones-Dataset/master/character-predictions.csv', 'data/raw') 
     This would download the dataset from the given URL and save it in the 'data/raw' directory.
     """
 
