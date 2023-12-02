@@ -77,9 +77,9 @@ pytest test/
 ```
 
 
-To visualize the notebook in a browser, go to the following link:
+To visualize the report as a jupyter book in a browser, go to the following link:
 
-<https://ianm99.github.io/Team-6-publishing/index.html>
+<https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html>
 
 
 ## Reference
