@@ -1,5 +1,7 @@
+from cgi import test
 import click
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 fill_nan_cols = {'title':'No Title',
                 'house':'No House',
@@ -25,11 +27,13 @@ less_frequent_cols = ['title','culture','house']
 
 @click.command()
 @click.option("--input_filepath", type=str)
-@click.option('--output_filepath', type=str)
+@click.option('--output_filepath_train', type=str)
+@click.option('--output_filepath_test', type=str)
 
 
 def preprocess_inputs(input_filepath,
-                      output_filepath):
+                      output_filepath_train,
+                      output_filepath_test):
 
   """
     Preprocesses a Pandas DataFrame by performing several data handling operations.
@@ -94,8 +98,15 @@ def preprocess_inputs(input_filepath,
 
     df[col] = df[col].apply(lambda x: x if x in keep_instances_dict[col] else 'Other')
 
+  df = df.rename(columns={'isAlive':'target'})
+  df["target"] = df["target"].map({0: 1, 1: 0})
+  
+  train_df, test_df = train_test_split(df,test_size=0.2,random_state=123)
 
-  df.to_csv(output_filepath)
+  
+
+  train_df.to_csv(output_filepath_train,index=False)
+  test_df.to_csv(output_filepath_test,index=False)
   #return df
 
 
