@@ -1,6 +1,2 @@
 format: jb-book
-root: README_book.md
-chapters:
-- file: got_fatality_predictor_book.ipynb
-# - file: notebooks
-# - file: markdown-notebooks
+root: got_fatality_predictor_book.ipynb
