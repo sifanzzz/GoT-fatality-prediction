@@ -1,0 +1,9 @@
+title: Game of Thrones Fatality Predictor
+author: Arturo, Ian, Sifan, Thomas
+#logo: logo.png
+execute:
+  execute_notebooks: force
+
+# Add a bibtex file so that we can create citations
+# bibtex_bibfiles:
+#   - references.bib
