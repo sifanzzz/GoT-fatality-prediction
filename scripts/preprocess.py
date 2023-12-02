@@ -29,11 +29,13 @@ less_frequent_cols = ['title','culture','house']
 @click.option("--input_filepath", type=str)
 @click.option('--output_filepath_train', type=str)
 @click.option('--output_filepath_test', type=str)
+@click.option('--seed', type=int)
 
 
 def preprocess_inputs(input_filepath,
                       output_filepath_train,
-                      output_filepath_test):
+                      output_filepath_test,
+                      seed):
 
   """
     Preprocesses a Pandas DataFrame by performing several data handling operations.
@@ -101,7 +103,7 @@ def preprocess_inputs(input_filepath,
   df = df.rename(columns={'isAlive':'target'})
   df["target"] = df["target"].map({0: 1, 1: 0})
   
-  train_df, test_df = train_test_split(df,test_size=0.2,random_state=123)
+  train_df, test_df = train_test_split(df,test_size=0.2,random_state=seed)
 
   
 
