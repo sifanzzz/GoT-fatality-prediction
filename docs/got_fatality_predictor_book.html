@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Predicting Character Deaths in Game of Thrones &#8212; Game of Thrones Fatality Predictor</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'got_fatality_predictor_book';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Game of Thrones Fatality Predictor</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Predicting Character Deaths in Game of Thrones
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/got_fatality_predictor_book.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicting Character Deaths in Game of Thrones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-and-results">Methods and Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="predicting-character-deaths-in-game-of-thrones">
+<h1>Predicting Character Deaths in Game of Thrones<a class="headerlink" href="#predicting-character-deaths-in-game-of-thrones" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>We build a prediction tool that predicts whether a given character from the Game of Thrones books will survive to the end of the series. To do this, we implement a logistic regression model on a data set containing character information. The model is not able to achieve prediction accuracy any better than 65%. This is likely due to an absence of strong patterns in the plot and cast of characters that would allow us to easily answer such a question.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>The popular novel series <em>Game of Thrones</em> by George R. R. Martin takes place in a fictional world inspired by medeival Europe. Warfare and violence are central to the plot, leading to frequent casualties among the expansive cast of characters. Exactly which characters are fated to die before the end of the series has become a topic of heated speculation.</p>
+<p>In this analysis we try to predict whether a character will come to grief before the end of the series based on that character’s attributes. We consider a data set created by Data Society available through data.world <span id="id1">[<a class="reference internal" href="#id6" title="Data Society. Requests: game of thrones. https://data.world/data-society/game-of-thrones, 2016.">Data Society, 2016</a>]</span>, which comprises a comprehensive list of characters appearing in the series. For each character there is a number of attributes, such as whether the character is noble, whether they appeared in a given book in the series, whether a relation of theirs is already dead, and finally whether or not the character is still alive at the end.</p>
+</section>
+<section id="methods-and-results">
+<h2>Methods and Results<a class="headerlink" href="#methods-and-results" title="Permalink to this heading">#</a></h2>
+<p>A concern of ours having seen the data is that there are a number of columns which are filled almost completely with missing values. These represent information that is only known for a very small minority of characters, like whether their parents are alive and who their heir is. We decided to drop columns that were almost entirely missing values, like <strong>isAliveFather</strong>. In other cases like <strong>House</strong>, where the missing values represent characters who are not noble and thus do not belong to a house, we filled the missing values with a new category like ‘No house’. Also these columns contained a great number of unique categories; for simplicity’s sake we decided to keep only the most common categories and filled all the other values with ‘other’. Finally for age, which is unknown for about half of the characters, we filled missing values with the median age.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Percent NaN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>S.No</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>plod</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>name</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>title</td>
+      <td>0.517986</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>male</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>culture</td>
+      <td>0.652107</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>dateOfBirth</td>
+      <td>0.777492</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>DateoFdeath</td>
+      <td>0.771840</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>mother</td>
+      <td>0.989209</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>father</td>
+      <td>0.986639</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>heir</td>
+      <td>0.988181</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>house</td>
+      <td>0.219424</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>spouse</td>
+      <td>0.858171</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>book1</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>book2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>book3</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>book4</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>book5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>isAliveMother</td>
+      <td>0.989209</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>isAliveFather</td>
+      <td>0.986639</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>isAliveHeir</td>
+      <td>0.988181</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>isAliveSpouse</td>
+      <td>0.858171</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>isMarried</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>isNoble</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>age</td>
+      <td>0.777492</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>numDeadRelations</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>boolDeadRelations</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>isPopular</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>popularity</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>isAlive</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We created a heatmap <span id="id2">[<a class="reference internal" href="#id7" title="Joel Östblom. Dsci531 course notes. https://pages.github.ubc.ca/MDS-2023-24/DSCI_531_viz-1_students/lectures/4-eda.html, 2023.">Östblom, 2023</a>]</span> to illustrate the correlation of each feature with <strong>isAlive</strong>. None of the correlations, in <a class="reference internal" href="#correlation-map"><span class="std std-numref">Figure 1</span></a>, are particularly strong, but they seem to make sense. There is a notable positive correlation with whether the character is alive in book 4, which makes sense given that a character has no chance of being alive at the end of the series if they aren’t still alive at book 4. There are also notable negative correlations with the character’s popularity and the number of dead realtions the character has, suggesting that popular characters whose families are already depleted tend to survive in the story.</p>
+<figure class="align-default" id="correlation-map">
+<a class="reference internal image-reference" href="_images/correlation_heatmap.png"><img alt="_images/correlation_heatmap.png" src="_images/correlation_heatmap.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Correlation heatmap for all features in processed data</span><a class="headerlink" href="#correlation-map" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Using this cleaned data set, we then constructed a column transformer to prepare the data for machine learning purposes. We tried a selection of different machine learning models: dummy, k-NN, SVM, and logistic regression <span id="id3">[<a class="reference internal" href="#id8" title="Varada Kolhatkar. Dsci571 course notes. https://pages.github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students/lectures/00_motivation-course-information.html, 2023.">Kolhatkar, 2023</a>]</span>. We found that the logistic regression model performed the best based on f1 score, with <strong>test_f1</strong> of 0.427, and so undertook randomized hyper-parameter optimization <span id="id4">[<a class="reference internal" href="#id9" title="Joel Östblom. Dsci573 course notes. https://pages.github.ubc.ca/MDS-2023-24/DSCI_573_feat-model-select_students/README.html, 2023.">Östblom, 2023</a>]</span> to fine-tune that model.</p>
+<p>The results of a randomized grid search with cross validation is shown below.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>param_logisticregression__C</th>
+      <th>param_logisticregression__max_iter</th>
+      <th>param_logisticregression__class_weight</th>
+      <th>mean_test_score</th>
+      <th>mean_fit_time</th>
+      <th>mean_train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000</td>
+      <td>500</td>
+      <td>balanced</td>
+      <td>0.516</td>
+      <td>0.020</td>
+      <td>0.518</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000</td>
+      <td>2000</td>
+      <td>balanced</td>
+      <td>0.516</td>
+      <td>0.020</td>
+      <td>0.518</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.048</td>
+      <td>100</td>
+      <td>balanced</td>
+      <td>0.502</td>
+      <td>0.038</td>
+      <td>0.516</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.886</td>
+      <td>2000</td>
+      <td>balanced</td>
+      <td>0.501</td>
+      <td>0.041</td>
+      <td>0.519</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>69.519</td>
+      <td>2000</td>
+      <td>balanced</td>
+      <td>0.498</td>
+      <td>0.042</td>
+      <td>0.525</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Having found this best performing model, we tried it out by deploying it on the test set. The classification report is shown below, along with a precision recall curve and a reciever operating characteristic curve</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1-score</th>
+      <th>support</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.876984</td>
+      <td>0.609235</td>
+      <td>0.718991</td>
+      <td>1451.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.395522</td>
+      <td>0.749495</td>
+      <td>0.517795</td>
+      <td>495.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.644913</td>
+      <td>0.644913</td>
+      <td>0.644913</td>
+      <td>0.644913</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.636253</td>
+      <td>0.679365</td>
+      <td>0.618393</td>
+      <td>1946.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.754516</td>
+      <td>0.644913</td>
+      <td>0.667813</td>
+      <td>1946.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<figure class="align-default" id="pr-curve">
+<a class="reference internal image-reference" href="_images/pr_curve.png"><img alt="_images/pr_curve.png" src="_images/pr_curve.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Precision Recall Curve for the best model</span><a class="headerlink" href="#pr-curve" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="roc-curve">
+<a class="reference internal image-reference" href="_images/roc_curve.png"><img alt="_images/roc_curve.png" src="_images/roc_curve.png" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">RoC Curve for the best model</span><a class="headerlink" href="#roc-curve" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For both classes (0 = character survives, 1 = character dies), the model’s recall is comparable, show in <a class="reference internal" href="#pr-curve"><span class="std std-numref">Figure 2</span></a> and <code class="docutils literal notranslate"><span class="pre">Figure</span> <span class="pre">{number}</span> <span class="pre">&lt;roc_curve&gt;</span></code>. However for class 1 the model’s precision is much lower, indicating that it is a bit too quick to predict the demise of a character. This could perhaps be improved in future by altering the class weights.</p>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this heading">#</a></h2>
+<p>Overall the model’s accuracy is fairly unimpressive, correctly predicting the fate of a character in only about half of all cases. While this might seem a bit disappointing, it did not particularly surprise or discourage us: George R. R. Martin is a celebrated author and master story teller, and the fact that we can’t easily predict a whether a character will survive based on their attributes is a testament to the quality of his writing rather than the inadequacy of our model. Of course, this prediction tool is largely humerous and unlikely to make much of an impact beyond this project, it is nevertheless interesting to have a quanititative assessment of a plotline’s predictability!</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<div class="docutils container" id="id5">
+<dl class="citation">
+<dt class="label" id="id8"><span class="brackets"><a class="fn-backref" href="#id3">Kol23</a></span></dt>
+<dd><p>Varada Kolhatkar. Dsci571 course notes. <a class="reference external" href="https://pages.github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students/lectures/00_motivation-course-information.html">https://pages.github.ubc.ca/MDS-2023-24/DSCI_571_sup-learn-1_students/lectures/00_motivation-course-information.html</a>, 2023.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">DataSociety16</a></span></dt>
+<dd><p>Data Society. Requests: game of thrones. <a class="reference external" href="https://data.world/data-society/game-of-thrones">https://data.world/data-society/game-of-thrones</a>, 2016.</p>
+</dd>
+<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id2">Ost23a</a></span></dt>
+<dd><p>Joel Östblom. Dsci531 course notes. <a class="reference external" href="https://pages.github.ubc.ca/MDS-2023-24/DSCI_531_viz-1_students/lectures/4-eda.html">https://pages.github.ubc.ca/MDS-2023-24/DSCI_531_viz-1_students/lectures/4-eda.html</a>, 2023.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id4">Ost23b</a></span></dt>
+<dd><p>Joel Östblom. Dsci573 course notes. <a class="reference external" href="https://pages.github.ubc.ca/MDS-2023-24/DSCI_573_feat-model-select_students/README.html">https://pages.github.ubc.ca/MDS-2023-24/DSCI_573_feat-model-select_students/README.html</a>, 2023.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-and-results">Methods and Results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Arturo, Ian, Sifan, Thomas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

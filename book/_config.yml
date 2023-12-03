@@ -1,0 +1,14 @@
+title: Game of Thrones Fatality Predictor
+author: Arturo, Ian, Sifan, Thomas
+date: "2023-12-02"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
+
+#logo: logo.png
+execute:
+  execute_notebooks: force
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
