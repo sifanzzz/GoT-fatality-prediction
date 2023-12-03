@@ -51,7 +51,7 @@ To visualize the notebook in a browser, go to the following link:
 
 #### Setup
 
-1.  **Setting up for to run this analysis via docker**
+1.  **Setting up to run this analysis via docker**
 
 -   [Install](https://www.docker.com/get-started/) and launch Docker on your computer.
 -   Clone this GitHub repository.
@@ -72,7 +72,7 @@ Open the directory
 
 click on `work/`
 
-2.  **Setting up to running this analysis via conda environment.**
+2.  **Setting up to run this analysis via conda environment.**
 
 If you don't want to use docker, then the first time running the project, run the following from the root of this repository:
 
@@ -89,7 +89,7 @@ jupyter lab
 
 #### Run the project
 
-After setting up with one of the above method, to run the analysis, run the following from the root of this repository:
+After setting up with one of the above methods, to run the analysis, run the following from the root of this repository:
 
 ``` bash
 # download and extract data
@@ -130,6 +130,11 @@ python scripts/evaluate_got_fatality_predictor.py \
     --test-data data/processed/test.csv \
     --models-from results/models/ \
     --results-to results/
+
+# build HTML report and copy build to docs folder
+
+jupyter-book build book/
+cp -r book/_build/html/* docs
 ```
 
 ## Clean up
