@@ -1,8 +1,8 @@
 services:
   got_fatality_predictior:
-    image: thomasjian/dsci522-got-fatality-prediction:7d1f892
+    image: thomasjian/dsci522-got-fatality-prediction:64af4a7 
     ports: 
-      - "8890:8888"
+      - "8890:8890"
     volumes:
       - .:/home/jovyan/work
     deploy:
@@ -10,10 +10,11 @@ services:
         limits:
           memory: 5G
     platform: linux/amd64
-    command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
+    command: "start-notebook.sh --port=8890 --NotebookApp.token='' --NotebookApp.password=''"
+    tty: true
+    stdin_open: true
 
 # Additional Notes:
-# - This is test Configuration, need to replace image name
 # - The port 8890 on the host is mapped to port 8888 inside the container, where the Jupyter Notebook server is likely running.
 # - The Jupyter Notebook server is configured to run without a token for ease of access.
 
