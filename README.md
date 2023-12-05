@@ -41,7 +41,7 @@ The final report can be found [here](https://ianm99.github.io/Milestone-3/got_fa
 
 To visualize the notebook in a browser, go to the following link:
 
-<https://ianm99.github.io/Team-6-publishing/index.html>
+https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html
 
 ## Dependencies
 
