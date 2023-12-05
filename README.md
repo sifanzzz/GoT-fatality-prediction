@@ -6,17 +6,21 @@
 
 Milestone project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia.
 
-## Overview
+## 🪐 Overview
 
 This project aims to predict the mortality of characters in "Game of Thrones" using machine learning models. The model is designed to analyze data related to characters in the book series "Game of Thrones" and predict whether a character is likely to survive or die in the story line.
 
 Fatality prediction in this context is a binary classification task, where the outcome is categorized as either `isDead=0` (indicating survive) or `isDead=1` (indicating dead). By training on the data, we aim to create a model capable of providing insights into the fate of characters based on various features.
 
-## Model Comparison
+## 📖 Data Source
+[character-predictions_pose.csv,
+Game of Thrones, Data Society, data.world](https://data.world/data-society/game-of-thrones/workspace/file?filename=character-predictions_pose.csv)
+
+## 🧑‍💻 Model Comparison
 
 Our initial model comparison involved three classifiers: DummyClassifier, Logistic Regression (LR), and Support Vector Classifier (SVC). From the evaluation metrics, LR emerged as the top-performing model. Therefore, we proceeded hyperparameter optimization for LR to enhance its predictive capabilities.
 
-## Test Set Evaluation
+## ⭐️ Test Set Evaluation
 
 The optimized LR model was then evaluated on a test set of 390 instances, resulting in the following key metrics:
 
@@ -27,15 +31,15 @@ The optimized LR model was then evaluated on a test set of 390 instances, result
 -   **Macro Average:** Precision 0.61, Recall 0.65, F1-score 0.59
 -   **Weighted Average:** Precision 0.73, Recall 0.63, F1-score 0.66
 
-## Test Summary
+## 📔 Test Summary
 
 These metrics provide a comprehensive understanding of the model's performance in predicting character survival or fatality. Overall the model's accuracy is fairly unimpressive, correctly predicting the fate of a character in only about half of all cases. While this might seem a bit disappointing, it did not particularly surprise or discourage us: George R. R. Martin is a celebrated author and master story teller, and the fact that we can't easily predict a whether a character will survive based on their attributes is a testament to the quality of his writing rather than the inadequacy of our model.
 
-## Next Steps
+## 🪜 Next Steps
 
 Further refinement and exploration of additional features may be necessary to enhance predictive accuracy. Future considerations might involve more sophisticated models to improve performance.
 
-## Report
+## 🖨 Report
 
 The final report can be found [here](https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html).
 
@@ -43,11 +47,11 @@ To visualize the notebook in a browser, go to the following link:
 
 https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html
 
-## Dependencies
+## 💻 Dependencies
 
 [Docker](https://www.docker.com/) is a container solution used to manage the software dependencies for this project. The Docker image used for this project is based on the quay.io/jupyter/minimal-notebook:2023-11-19. Additioanal dependencies are specified int the [Dockerfile](https://github.com/UBC-MDS/GoT-fatality-prediction/blob/main/Dockerfile).
 
-## Usage
+## 📋 Usage
 
 #### Setup
 
@@ -138,7 +142,7 @@ cp -r book/_build/html/* docs
 yes | cp -rf book/_build/html/* docs/
 ```
 
-## Clean up
+#### Clean up
 
 To shut down the container and clean up the resources, type Cntrl + C in the terminal where you launched the container, and then type docker docker compose down
 
@@ -147,7 +151,7 @@ docker compose down
 ```
 
 
-## Reference
+## 📌 Reference
 
 1.  Data Society. 2016. Requests: Game of Thrones. <https://data.world/data-society/game-of-thrones>
 2.  Joel Östblom. 2023. DSCI531 Course Notes. <https://pages.github.ubc.ca/MDS-2023-24/DSCI_531_viz-1_students/lectures/4-eda.html>
