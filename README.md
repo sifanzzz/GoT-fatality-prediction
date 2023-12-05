@@ -135,6 +135,7 @@ python scripts/evaluate_got_fatality_predictor.py \
 
 jupyter-book build book/
 cp -r book/_build/html/* docs
+yes | cp -rf book/_build/html/* docs/
 ```
 
 ## Clean up
@@ -144,6 +145,7 @@ To shut down the container and clean up the resources, type Cntrl + C in the ter
 ``` bash
 docker compose down
 ```
+
 
 ## Reference
 
