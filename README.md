@@ -104,7 +104,7 @@ python scripts/download_data.py \
 
 # calculate the NaN percentage of the data
 
-python src/calculate_missing_percentage.py \
+python scripts/calculate_missing_percentage.py \
     --file_path=data/character-predictions_pose.csv \
     --output_file=data/tables/calculate_missing_percentage.csv \
     
