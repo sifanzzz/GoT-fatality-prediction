@@ -41,11 +41,7 @@ Further refinement and exploration of additional features may be necessary to en
 
 ## 🖨 Report
 
-The final report can be found [here](https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html).
-
-To visualize the notebook in a browser, go to the following link:
-
-https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html
+The final report as a jupyter book can be found [here](https://ianm99.github.io/Milestone-3/got_fatality_predictor_book.html).
 
 ## 💻 Dependencies
 
