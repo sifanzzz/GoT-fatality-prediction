@@ -74,12 +74,21 @@ def preprocess_inputs(input_filepath,
               'age',
               'DateoFdeath']
 
+  extra_drop_cols = ['actual',
+                    'pred',
+                    'alive']
+
   less_frequent_cols = ['title','culture','house']
   df = pd.read_csv(input_filepath)
 
   # Drop columns
 
   df = df.drop(drop_cols,axis=1)
+
+  try:
+      df = df.drop(extra_drop_cols,axis=1)
+  except:
+      pass
 
   # Fill NaN values
 
