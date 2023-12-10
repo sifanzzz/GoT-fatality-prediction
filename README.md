@@ -10,7 +10,7 @@ Milestone project for DSCI 522 (Data Science workflows); a course in the Master 
 
 This project aims to predict the mortality of characters in "Game of Thrones" using machine learning models. The model is designed to analyze data related to characters in the book series "Game of Thrones" and predict whether a character is likely to survive or die in the story line.
 
-Fatality prediction in this context is a binary classification task, where the outcome is categorized as either `isDead=0` (indicating survive) or `isDead=1` (indicating dead). By training on the data, we aim to create a model capable of providing insights into the fate of characters based on various features.
+Fatality prediction in this context is a binary classification task, where the outcome is categorized as either `target=0` (indicating survive) or `target=1` (indicating dead). By training on the data, we aim to create a model capable of providing insights into the fate of characters based on various features.
 
 ## 📖 Data Source
 
