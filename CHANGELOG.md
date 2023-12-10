@@ -10,4 +10,10 @@ Probelm: There was some confusion over what the features actually represent, sin
 
 Problem: There was an extraneous file called ians_script that should have been deleted to make the repo as concise as possible. It is now gone (you can verify that there is no such file in the scripts folder)
 
-Problem: 
+Problem: There were some variables that were left in the EDA that did not make sense to the model, and were not mentioned in the feature explanations. These variables were `alive`, `pred`, and `actual` They were removed as requested by the reviewers.
+
+<https://github.com/UBC-MDS/GoT-fatality-prediction/blob/changelog-update/scripts/preprocess.py>
+
+Problem: There was a script that did not follow the proper name convention. The reviewers asked to either remove it or rename it if it was important. It was renamed from `ians_script.py` to `results_show.py` in order for it to be more telling of what it does.
+
+<https://github.com/UBC-MDS/GoT-fatality-prediction/blob/changelog-update/src/results_show.py>
