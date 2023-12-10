@@ -6,6 +6,6 @@ import click
 with open("./test/model.pkl", "rb") as f:
               random_search = pickle.load(f)
 
-def main(ranom_search)
+def main(ranom_search):
     results = short_results(random_search)
     return results
