@@ -8,7 +8,6 @@ Probelm: There was some confusion over what the features actually represent, sin
 
 <https://vscode.dev/github/UBC-MDS/Team6/blob/main/book/got_fatality_predictor_book.ipynb#C9>
 
-Problem: There was an extraneous file called ians_script that should have been deleted to make the repo as concise as possible. It is now gone (you can verify that there is no such file in the scripts folder)
 
 Problem: There were some variables that were left in the EDA that did not make sense to the model, and were not mentioned in the feature explanations. These variables were `alive`, `pred`, and `actual` They were removed as requested by the reviewers.
 
