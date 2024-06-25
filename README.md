@@ -1,4 +1,3 @@
-# Team 6 Milestone Project:
 
 # Game of Throne Characters Fatality Predictor
 
