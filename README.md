@@ -4,8 +4,6 @@
 
 - Author: Thomas Jian, Ian MacCarthy, Arturo Rey, Sifan Zhang
 
-Milestone project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia.
-
 ## 🪐 Overview
 
 This project aims to predict the mortality of characters in "Game of Thrones" using machine learning models. The model is designed to analyze data related to characters in the book series "Game of Thrones" and predict whether a character is likely to survive or die in the story line.
